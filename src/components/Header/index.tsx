@@ -1,16 +1,13 @@
+import { useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 import * as S from './styles'
-
-import { Produto } from '../../App'
-
 import cesta from '../../assets/cesta.png'
 import { paraReal } from '../Produto'
 
-type Props = {
-  itensNoCarrinho: Produto[]
-  favoritos: Produto[]
-}
+const Header = () => {
+  const itensNoCarrinho = useSelector((state: RootReducer) => state.cart.itens)
+  const favoritos = useSelector((state: RootReducer) => state.favorites.itens)
 
-const Header = ({ itensNoCarrinho, favoritos }: Props) => {
   const valorTotal = itensNoCarrinho.reduce((acc, item) => {
     acc += item.preco
     return acc
